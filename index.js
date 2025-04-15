@@ -3,7 +3,12 @@ const axios = require("axios");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
+
+// תומך ב-CORS מכל מקור
+app.use(cors({
+  origin: "*"
+}));
+
 app.use(express.json());
 
 const FIREBERRY_TOKEN = "d9c9341b-f69e-4872-a926-c9eb42313408";
@@ -24,7 +29,7 @@ app.get("/api/order/:id", async (req, res) => {
   }
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🔥 השרת עובד! כנס לכתובת http://localhost:${PORT}`);
+  console.log(`🔥 שרת רץ על http://localhost:${PORT}`);
 });
